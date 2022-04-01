@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="rock-paper-scissors.js"></script>
+    <script src="rock-paper-scissors.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-    <H2>Results</h2>
-    <script>
-        var computer=0
-        var human=0
-        var tie=0
-        //game();
-    
-        document.write(game())
-    </script>
+    <H2>Pick one:</h2>
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+        <br><br>
+    <div id="container"></div>
+
+  
 
 </body>
 </html>
+
+<!-- 
+Create three buttons, one for each selection. Add an event listener to the buttons that call your playRound function with the correct playerSelection every time a button is clicked. (you can keep the console.logs for this step)
+Add a div for displaying results and change all of your console.logs into DOM methods.
+Display the running score, and announce a winner of the game once one player reaches 5 points.
+You will likely have to refactor (rework/rewrite) your original code to make it work for this. That’s OK! Reworking old code is an important part of a programmer’s life. -->
