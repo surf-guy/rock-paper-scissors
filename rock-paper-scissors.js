@@ -9,19 +9,53 @@ function computerPlay(){
 
 function playRound(playerSelection, computerSelection) {
     //console.log(computerSelection)
-    if(computerSelection=="paper"){
+    if(computerSelection=="paper" && playerSelection=="rock"){
       alert("You lose this round! "+computerSelection+" beats "+playerSelection)
       computer++
       return computer    
     }
 
-    else if(computerSelection=="rock"){
+    else if(computerSelection=="rock" && playerSelection=="rock"){
       alert("Tied this round! "+computerSelection+"  tied with "+playerSelection)
       tie++
       return tie
       //return "Tie! "+computerSelection+" tie with "+playerSelection
     }
-    else{
+    else if(computerSelection=="scissors" && playerSelection=="rock"){
+      alert("You won this round! "+playerSelection+"  beats "+computerSelection)
+      human++
+      return human
+    }
+    else if(computerSelection=="rock" && playerSelection=="scissors"){
+      alert("You lose this round! "+computerSelection+" beats "+playerSelection)
+      computer++
+      return computer    
+    }
+
+    else if(computerSelection=="scissors" && playerSelection=="scissors"){
+      alert("Tied this round! "+computerSelection+"  tied with "+playerSelection)
+      tie++
+      return tie
+      //return "Tie! "+computerSelection+" tie with "+playerSelection
+    }
+    else if(computerSelection=="paper" && playerSelection=="scissors"){
+      alert("You won this round! "+playerSelection+"  beats "+computerSelection)
+      human++
+      return human
+    }
+    else if(computerSelection=="scissors" && playerSelection=="paper"){
+      alert("You lose this round! "+computerSelection+" beats "+playerSelection)
+      computer++
+      return computer    
+    }
+
+    else if(computerSelection=="paper" && playerSelection=="paper"){
+      alert("Tied this round! "+computerSelection+"  tied with "+playerSelection)
+      tie++
+      return tie
+      //return "Tie! "+computerSelection+" tie with "+playerSelection
+    }
+    else if(computerSelection=="rock" && playerSelection=="paper"){
       alert("You won this round! "+playerSelection+"  beats "+computerSelection)
       human++
       return human
@@ -31,18 +65,42 @@ function playRound(playerSelection, computerSelection) {
 
 function game(){
   for(var i=0; i<5; i++){
-    const playerSelection = prompt("Enter selection").toLocaleLowerCase();
+    var playerSelection=''
+    var inputValid=false
+    while(inputValid===false){
+       playerSelection = prompt("Enter selection").toLocaleLowerCase();
+       if((playerSelection=="paper") ||(playerSelection=="rock") || (playerSelection=="scissors")){
+          inputValid=true
+          alert(playerSelection+" "+inputValid)
+       }
+        else{
+           inputValid=false
+           alert(playerSelection+" "+inputValid)
+       }
+    }
     const computerSelection = computerPlay();
     playRound(playerSelection, computerSelection)
   }
   console.log("\n"+"\n")
   console.log(human)
-  if(human>computer)
-    return "You won "+human+ " out of "+(parseInt(human)+parseInt(computer)+parseInt(tie))+" rounds!"
-  else if(computer>human)
-    return "You lost. Computer won "+computer+ " out of "+(parseInt(human)+parseInt(computer)+parseInt(tie))+" rounds!"
+  var str='';
+  if(human>computer){
+    str="<h3>YOU ARE THE WINNER!</h3>"+"<br>"+
+           "You won "+human+ " out of "+(parseInt(human)+parseInt(computer)+parseInt(tie))+" rounds!"+"<br>"+
+           "Computer won "+computer+ " out of "+(parseInt(human)+parseInt(computer)+parseInt(tie))+" rounds!"+"<br>"+
+           "There were "+tie+" tied"
+    return str;
+  }
+  else if(computer>human){
+    str= "<h3>YOU ARE THE LOSER!</h3>"+"<br>"+
+           "Computer won "+computer+ " out of "+(parseInt(human)+parseInt(computer)+parseInt(tie))+" rounds!"+"<br>"+
+           "You won "+human+ " out of "+(parseInt(human)+parseInt(computer)+parseInt(tie))+" rounds!"+"<br>"+
+           "There were "+tie+" tied"
+    return str;
+  }
   else if(computer==human)
-    return "Overall Tied"
+    str= "There were "+tie+" tied out of "+(parseInt(human)+parseInt(computer)+parseInt(tie))+" rounds!"
+    return str;
 }
   
   
