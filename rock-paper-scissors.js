@@ -7,24 +7,31 @@ const content = document.createElement('div');
 content.classList.add('content');
 content.textContent="hajime!!"
 container.appendChild(content);
+
+const score= document.createElement('div');
+score.classList.add('score');
+score.innerHTML="Computer:"+computer+"<br/>"+"Human: "+human;
+container.appendChild(score);
+
+
 const buttons = document.querySelectorAll('button');
-
-
 // we use the .forEach method to iterate through each button
 buttons.forEach((button) => {
   // and for each one we add a 'click' listener
 
-    button.addEventListener('click', () => {
-      playRound(button.id,computerPlay())
-      content.textContent="Computer:"+computer+" Human:"+human;
+    button.addEventListener('click', () => { 
+      if(computer==5 || human==5){
+        alert('game over!!!')
+      }    
+      content.textContent=playRound(button.id,computerPlay())
+      score.innerHTML="Computer: "+computer+"<br/>"+"Human: "+human;
+      score.appendChild(score)
       container.appendChild(content);
     });
   }
 );
 
-if(computer==5 || human==5){
-  alert('game over!!!')
-}
+
 
 
 /* buttons.forEach((button) => {
@@ -45,48 +52,53 @@ function computerPlay(){
 
 function playRound(playerSelection, computerSelection) {
     if(computerSelection=="paper" && playerSelection=="rock"){
-     alert("You lose this round! "+computerSelection+" beats "+playerSelection)
-     computer++
-     return 'computer'
+    computer++
+     return "You lose this round! "+computerSelection+" beats "+playerSelection
+     //return 'computer'
     }
 
     else if(computerSelection=="rock" && playerSelection=="rock"){
-      alert("Tied this round! "+computerSelection+"  tied with "+playerSelection)
+      return "Tied this round! "+computerSelection+"  tied with "+playerSelection
     }
     else if(computerSelection=="scissors" && playerSelection=="rock"){
-     alert("You won this round! "+playerSelection+"  beats "+computerSelection)
      human++
-     return 'human'
+     return "You won this round! "+playerSelection+"  beats "+computerSelection
+    
+     //return 'human'
      
     }
     else if(computerSelection=="rock" && playerSelection=="scissors"){
-      alert("You lose this round! "+computerSelection+" beats "+playerSelection)
       computer++
-      return "computer"    
+      return "You lose this round! "+computerSelection+" beats "+playerSelection
+      
+      //return "computer"    
     }
 
     else if(computerSelection=="scissors" && playerSelection=="scissors"){
-      alert("Tied this round! "+computerSelection+"  tied with "+playerSelection)
+      return "Tied this round! "+computerSelection+"  tied with "+playerSelection
 
     }
     else if(computerSelection=="paper" && playerSelection=="scissors"){
-      alert("You won this round! "+playerSelection+"  beats "+computerSelection)
       human++
-      return "human"
+      return "You won this round! "+playerSelection+"  beats "+computerSelection
+      
+      //return "human"
     }
     else if(computerSelection=="scissors" && playerSelection=="paper"){
-      alert("You lose this round! "+computerSelection+" beats "+playerSelection)
       computer++
-      return "computer"    
+      return "You lose this round! "+computerSelection+" beats "+playerSelection
+      
+      //return "computer"    
     }
 
     else if(computerSelection=="paper" && playerSelection=="paper"){
-      alert("Tied this round! "+computerSelection+"  tied with "+playerSelection)
+      return "Tied this round! "+computerSelection+"  tied with "+playerSelection
     }
     else if(computerSelection=="rock" && playerSelection=="paper"){
-      alert("You won this round! "+playerSelection+"  beats "+computerSelection)
       human++
-      return "human"
+      return "You won this round! "+playerSelection+"  beats "+computerSelection
+      
+      //return "human"
     }
   }
 
